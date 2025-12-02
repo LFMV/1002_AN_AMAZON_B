@@ -7,7 +7,7 @@ export class PurchaseController {
   constructor(private readonly purchaseService: PurchaseService) {}
 
   @Post()
-  async save(@Body() savePurchaseDto: SavePurchaseDto) {
+  async save( @Body() savePurchaseDto: SavePurchaseDto ) {
 
     return await this.purchaseService.save( savePurchaseDto );
 

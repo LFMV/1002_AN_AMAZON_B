@@ -17,7 +17,7 @@ export class PurchaseProductService {
     createPurchaseProductDto: CreatePurchaseProductDto,
   ): Promise<CreatePurchaseProductDto> {
 
-    return await this.purchaseProductRepository.save(createPurchaseProductDto);
-    
+    return await this.purchaseProductRepository.save( createPurchaseProductDto );
+
   }
 }
