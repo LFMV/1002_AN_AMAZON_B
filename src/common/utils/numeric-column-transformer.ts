@@ -1,4 +1,5 @@
 export class NumericColumnTransformer {
+
   from(data: string): number {
     return Number(data);
   }
@@ -6,4 +7,5 @@ export class NumericColumnTransformer {
   to(data: number): number {
     return data;
   }
+
 }

@@ -43,8 +43,8 @@ export class Product {
   previousPrice: number;
 
   @OneToMany(
-    () => PurchaseProduct,
-    (purchaseProduct) => purchaseProduct.product,
+    () => PurchaseProduct, // Type of entity that the function will use
+    (purchaseProduct) => purchaseProduct.product, // An instance is generated in the purchaseProduct field
   )
   purchaseProducts: Relation<PurchaseProduct[]>;
 }

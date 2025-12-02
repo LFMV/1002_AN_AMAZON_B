@@ -10,6 +10,7 @@ import { PurchaseProduct } from './PurchaseProduct';
 
 @Entity()
 export class Purchase {
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -26,4 +27,5 @@ export class Purchase {
     (purchaseProduct) => purchaseProduct.purchase,
   )
   purchaseProducts: Relation<PurchaseProduct[]>;
+
 }
