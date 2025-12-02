@@ -17,10 +17,14 @@ export class CreatePurchaseProductDto {
   quantity: number;
 
   @ValidateNested()
-  @Type(() => ProductDto)
+  @Type(
+    () => ProductDto
+  )
   product: ProductDto;
 
   @ValidateNested()
-  @Type(() => PurchaseDto)
+  @Type(
+    () => PurchaseDto
+  )
   purchase: PurchaseDto;
 }

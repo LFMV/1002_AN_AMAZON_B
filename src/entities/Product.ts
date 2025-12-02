@@ -22,7 +22,10 @@ export class Product {
   @Column()
   urlImg: string;
 
-  @Column({ default: 0, transformer: new NumericColumnTransformer() })
+  @Column({
+    default: 0,
+    transformer: new NumericColumnTransformer()
+  })
   reviews: number;
 
   @Column({

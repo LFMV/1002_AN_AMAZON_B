@@ -1,4 +1,5 @@
 import { Type } from 'class-transformer';
+
 import {
   ArrayMinSize,
   IsArray,
@@ -13,6 +14,7 @@ import {
 } from 'class-validator';
 
 class ProductDto {
+
   @IsUUID()
   id: string;
 
@@ -26,12 +28,20 @@ class ProductDto {
 
   @IsUrl()
   urlImg: string;
+
+  // @IsNumber()
+  // @IsPositive()
+  // quantity: number;
+
 }
 
 class CheckoutProduct {
   @IsObject()
-  @ValidateNested()
-  @Type(() => ProductDto)
+  // verify that it meets the specifications ProductDto
+  @ValidateNested() // each: true = ensure that it meets the specification
+  @Type(
+    () => ProductDto // return constructor
+  )
   product: ProductDto;
 
   @IsNumber()
@@ -46,7 +56,29 @@ export class CheckoutDto {
 
   @IsArray()
   @ArrayMinSize(1)
-  @ValidateNested({ each: true })
-  @Type(() => CheckoutProduct)
+  // verify that it meets the specifications CheckoutProduct
+  @ValidateNested({ each: true }) // each: true = ensure that it meets the specification
+  @Type(
+    () => CheckoutProduct // return constructor
+  )
   products: CheckoutProduct[];
 }
+
+/** Structure JSON
+ *
+ * {
+  "total": 100,
+  "products": [
+    {
+      "product": {
+        "id": "08535c28-5465-4eaa-9623-f92e634b8051",
+        "price": 50,
+        "name": "Product",
+        "urlImg": "https://example.com/img.jpg"
+      },
+      "quantity": 2
+    }
+  ]
+}
+ *
+ */

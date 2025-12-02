@@ -8,6 +8,8 @@ export class PurchaseController {
 
   @Post()
   async save(@Body() savePurchaseDto: SavePurchaseDto) {
-    return await this.purchaseService.save(savePurchaseDto);
+
+    return await this.purchaseService.save( savePurchaseDto );
+
   }
 }

@@ -7,8 +7,8 @@ import { PurchaseProductService } from 'src/purchase-product/purchase-product.se
 import { PurchaseProduct } from 'src/entities/PurchaseProduct';
 
 @Module({
-  controllers: [PurchaseController],
-  providers: [PurchaseService, PurchaseProductService],
-  imports: [TypeOrmModule.forFeature([Purchase, PurchaseProduct])],
+  controllers: [ PurchaseController ],
+  providers: [ PurchaseService, PurchaseProductService ],
+  imports: [ TypeOrmModule.forFeature([ Purchase, PurchaseProduct ])],
 })
 export class PurchaseModule {}

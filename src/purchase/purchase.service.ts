@@ -8,12 +8,15 @@ import { SavePurchaseDto } from './dto/save-purchase.dto';
 @Injectable()
 export class PurchaseService {
   constructor(
-    @InjectRepository(Purchase)
+
+    @InjectRepository( Purchase )
     private readonly purchaseRepository: Repository<Purchase>,
     private readonly purchaseProductService: PurchaseProductService,
+
   ) {}
 
   async save(savePurchaseDto: SavePurchaseDto): Promise<{ message: string }> {
+
     const purchase = await this.purchaseRepository.save({
       total: savePurchaseDto.total,
     });
@@ -27,7 +30,8 @@ export class PurchaseService {
     purchaseId: string,
     products: { id: string; quantity: number }[],
   ) {
-    const purchaseProducts = products.map((product) => {
+
+    const purchaseProducts = products.map(( product ) => {
       return {
         product: {
           id: product.id,
@@ -39,8 +43,10 @@ export class PurchaseService {
       };
     });
 
-    purchaseProducts.forEach((purchaseProduct) => {
-      this.purchaseProductService.create(purchaseProduct);
+    purchaseProducts.forEach(( purchaseProduct ) => {
+      this.purchaseProductService.create( purchaseProduct );
     });
+
   }
+
 }

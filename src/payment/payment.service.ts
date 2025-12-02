@@ -8,30 +8,42 @@ export class PaymentService {
   stripe;
 
   constructor() {
-    this.stripe = new Stripe(envs.stripe.secretKey);
+
+    this.stripe = new Stripe( envs.stripe.secretKey );
+
   }
 
   async checkout(checkoutDto: CheckoutDto): Promise<{ checkoutUrl: string }> {
+
     const result = await this.stripe.checkout.sessions.create({
+
       line_items: checkoutDto.products.map(({ product, quantity }) => {
         return {
-          price_data: {
-            currency: 'USD',
-            product_data: {
-              name: product.name,
-              images: [product.urlImg],
+
+            price_data: {
+
+              currency: 'USD',
+              product_data: {
+                name: product.name,
+                images: [product.urlImg],
+              },
+              unit_amount: product.price * 100,
+
             },
-            unit_amount: product.price * 100,
-          },
-          quantity: quantity,
+            quantity: quantity,
+
         };
       }),
       mode: 'payment',
       payment_method_types: ['card'],
-      success_url: 'https://amazon-front-gamma.vercel.app/payment/success',
-      cancel_url: 'https://amazon-front-gamma.vercel.app/',
+      // success_url: 'https://amazon-front-gamma.vercel.app/payment/success',
+      // cancel_url: 'https://amazon-front-gamma.vercel.app/',
+      success_url: 'https://localhost:4200/payment/success',
+      cancel_url: 'https://localhost:4200',
+
     });
 
+    // Error
     if (!result.url) {
       throw new InternalServerErrorException();
     }

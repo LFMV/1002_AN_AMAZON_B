@@ -23,6 +23,8 @@ export class SavePurchaseDto {
 
   @IsArray()
   @ValidateNested({ each: true })
-  @Type(() => CartProduct)
+  @Type(
+    () => CartProduct
+  )
   products: CartProduct[];
 }

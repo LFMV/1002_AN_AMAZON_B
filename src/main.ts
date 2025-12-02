@@ -13,10 +13,12 @@ async function bootstrap() {
     credentials: true,
   });
 
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+  /** It cleans the data that is not in the validations and receives
+   *  only the specified data. in the DTO. */
+  app.useGlobalPipes( new ValidationPipe({ whitelist: true }) );
 
   await app.listen(envs.port);
   logger.log(`Server running on port ${envs.port}`);
-  
+
 }
 bootstrap();
