@@ -9,7 +9,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: 'https://amazon-front-gamma.vercel.app',
+    // origin: 'https://amazon-front-gamma.vercel.app',
+    origin: 'http://localhost:4200',
     credentials: true,
   });
 

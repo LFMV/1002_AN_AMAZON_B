@@ -2,18 +2,38 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CheckoutDto } from './dto/checkout.dto';
 import Stripe from 'stripe';
 import { envs } from 'src/config/envs';
+import { Purchase } from 'src/entities/Purchase';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CreateProductDto } from 'src/products/dto/create-product.dto';
+import { PurchaseService } from 'src/purchase/purchase.service';
 
 @Injectable()
 export class PaymentService {
   stripe;
 
-  constructor() {
+  constructor(
+
+    @InjectRepository(Purchase)
+    private readonly parchaseRepository: Repository<Purchase>,
+    // private readonly PurchaseProductService: PurchaseService,
+
+  ) {
 
     this.stripe = new Stripe( envs.stripe.secretKey );
 
   }
 
   async checkout(checkoutDto: CheckoutDto): Promise<{ checkoutUrl: string }> {
+    console.log(checkoutDto)
+
+    // save Purchase
+    const purchase = await this.parchaseRepository.save({
+      total: checkoutDto.total,
+    });
+
+    // create product of PurchaseProducts (order products)
+    // await this.createPurchaseProducts( purchase.id, checkoutDto.products, );
 
     const result = await this.stripe.checkout.sessions.create({
 
@@ -48,8 +68,35 @@ export class PaymentService {
       throw new InternalServerErrorException();
     }
 
+    // await this.productRepository.save( checkoutDto )
+
     return {
       checkoutUrl: result.url,
     };
   }
+
+  // private async createPurchaseProducts(
+  //   purchaseId: string,
+  //   products: CreateProductDto[],
+  // ) {
+  //     const purchaseProducts = products.map( (item) => {
+  //       return {
+  //         product: {
+  //           id: item.product.id, // Acceder al id del ProductDto anidado
+  //         },
+  //         quantity: item.quantity,
+  //         purchase: {
+  //           id: purchaseId,
+  //         },
+  //       };
+  //     });
+
+  //   // Guardar en paralelo o secuencialmente
+  //   await Promise.all(
+  //     purchaseProducts.map( (pp) =>
+  //       this.PurchaseProductService.save(pp)
+  //     )
+  //   );
+  // }
+
 }

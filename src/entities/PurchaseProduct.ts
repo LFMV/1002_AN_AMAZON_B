@@ -19,12 +19,14 @@ export class PurchaseProduct {
 
   @ManyToOne(
     () => Product,
-    (product) => product.purchaseProducts)
+    (product) => product.purchaseProducts
+  )
   product: Relation<Product>;
 
   @ManyToOne(
     () => Purchase,
-    (purchase) => purchase.purchaseProducts)
+    (purchase) => purchase.purchaseProducts
+  )
   purchase: Relation<Purchase>;
 
 }

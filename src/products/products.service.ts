@@ -7,8 +7,10 @@ import { CreateProductDto } from './dto/create-product.dto';
 @Injectable()
 export class ProductsService {
   constructor(
+
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
+
   ) {}
 
   async getAll(): Promise<Product[]> {

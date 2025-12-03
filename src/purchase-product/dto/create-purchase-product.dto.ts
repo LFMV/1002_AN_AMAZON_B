@@ -28,3 +28,17 @@ export class CreatePurchaseProductDto {
   )
   purchase: PurchaseDto;
 }
+
+
+/** Structure JSON
+ *
+ * {
+  "quantity": 3,
+  "product": {
+    "id": "e08a0944-b400-48b6-b7a3-098e7e024e28"
+  },
+  "purchase": {
+    "id": "41579397-133d-4bbd-af4e-139ea0737cd0"
+  }
+}
+ */

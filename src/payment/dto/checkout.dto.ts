@@ -29,10 +29,6 @@ class ProductDto {
   @IsUrl()
   urlImg: string;
 
-  // @IsNumber()
-  // @IsPositive()
-  // quantity: number;
-
 }
 
 class CheckoutProduct {
@@ -49,6 +45,7 @@ class CheckoutProduct {
   quantity: number;
 }
 
+// Nested Class example
 export class CheckoutDto {
   @IsNumber()
   @IsPositive()

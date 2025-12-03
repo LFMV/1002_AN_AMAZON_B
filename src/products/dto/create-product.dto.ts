@@ -13,6 +13,7 @@ export class CreateProductDto {
 
   @IsString()
   @IsNotEmpty()
+  @IsOptional()
   description: string;
 
   @IsNumber()
@@ -30,3 +31,15 @@ export class CreateProductDto {
   @IsOptional()
   reviews: number;
 }
+
+/** Structure JSON
+ *
+ * {
+  "name": "Zapatos Deportivos Airmax",
+  "description": "Unos zapatos deportivos muy cómodos y ligeros para correr largas distancias.",
+  "price": 150.00,
+  "urlImg": "ejemplo.com",
+  "previousPrice": 180.00,
+  "reviews": 4
+  }
+ */
