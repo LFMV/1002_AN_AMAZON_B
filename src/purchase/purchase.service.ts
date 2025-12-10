@@ -55,7 +55,7 @@ export class PurchaseService {
 
   }
 
-  /**
+  /** #1
    * Elimina todos los productos asociados a una compra específica
    * @param purchaseId - ID de la compra
    * @returns Número de productos eliminados
@@ -70,7 +70,7 @@ export class PurchaseService {
                       .createQueryBuilder()
                       .delete()
                       .from(PurchaseProduct)
-                      .where(`purchaseId = :purchaseId`, { purchaseId})
+                      .where(`purchaseId = :purchaseId`, { purchaseId })
                       .execute()
 
               this.logger.log(`Deleted ${ans.affected} products for purchase ${purchaseId}`)
@@ -86,6 +86,7 @@ export class PurchaseService {
       }
     }
 
+    // #2
     //  Elimina productos cargándolos primero (útil si tienes hooks o cascadas)
     async deleteProductsByPurchaseIdWithLoad(id: string) {
     try {
@@ -117,6 +118,7 @@ export class PurchaseService {
     }
   }
 
+  // #3
   // En tu purchase.service.ts. not working
     async remove(id: string) {
 
@@ -125,7 +127,7 @@ export class PurchaseService {
         where: { id },
         relations: ['purchaseProducts'] // carga los productos
       });
-
+      console.log('purchase', purchase )
       if (!purchase) {
         throw new NotFoundException(`Purchase with id ${id} not found`);
       }
