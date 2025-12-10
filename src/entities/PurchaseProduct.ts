@@ -25,7 +25,8 @@ export class PurchaseProduct {
 
   @ManyToOne(
     () => Purchase,
-    (purchase) => purchase.purchaseProducts
+    (purchase) => purchase.purchaseProducts,
+    { onDelete: 'CASCADE' }
   )
   purchase: Relation<Purchase>;
 

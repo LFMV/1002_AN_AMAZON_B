@@ -11,6 +11,7 @@ async function bootstrap() {
   app.enableCors({
     // origin: 'https://amazon-front-gamma.vercel.app',
     origin: 'http://localhost:4200',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
 

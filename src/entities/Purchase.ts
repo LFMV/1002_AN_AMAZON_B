@@ -25,6 +25,7 @@ export class Purchase {
   @OneToMany(
     () => PurchaseProduct,
     (purchaseProduct) => purchaseProduct.purchase,
+    // { eager: true } // cargue auto esta relación
   )
   purchaseProducts: Relation<PurchaseProduct[]>;
 

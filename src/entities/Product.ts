@@ -10,6 +10,7 @@ import { PurchaseProduct } from './PurchaseProduct';
 
 @Entity()
 export class Product {
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

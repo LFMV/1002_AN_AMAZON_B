@@ -1,9 +1,11 @@
-import { Body, Controller, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Logger, Param, ParseUUIDPipe, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CheckoutDto } from './dto/checkout.dto';
 import { PaymentService } from './payment.service';
 
 @Controller('payment')
 export class PaymentController {
+
+  private readonly logger = new Logger('PaymentController')
 
   constructor(
 
@@ -17,4 +19,5 @@ export class PaymentController {
     return this.paymentService.checkout( checkoutDto );
 
   }
+
 }
